@@ -1,0 +1,173 @@
+
+<script type="text/javascript">
+  $(function(){
+    $('.button-checkbox').each(function(){
+    var $widget = $(this),
+      $button = $widget.find('button'),
+      $checkbox = $widget.find('input:checkbox'),
+      color = $button.data('color'),
+      settings = { on: { icon: 'glyphicon glyphicon-check' },
+                  off: { icon: 'glyphicon glyphicon-unchecked'}};
+  
+    $button.on('click', function () {
+      $checkbox.prop('checked', !$checkbox.is(':checked'));
+      $checkbox.triggerHandler('change');
+      updateDisplay();
+    });
+  
+    $checkbox.on('change', function () {
+      updateDisplay();
+    });
+  
+    function updateDisplay() {
+      var isChecked = $checkbox.is(':checked');
+      // Set the button's state
+      $button.data('state', (isChecked) ? "on" : "off");
+  
+      // Set the button's icon
+      $button.find('.state-icon')
+        .removeClass()
+        .addClass('state-icon ' + settings[$button.data('state')].icon);
+  
+      // Update the button's color
+      if (!isChecked) {
+        $button
+          .removeClass('btn-default')
+          .addClass('btn-info active');
+      }
+      else
+      {
+        $button
+          .removeClass('btn-info active')
+          .addClass('btn-default');
+      }
+    }
+    function init() {
+      updateDisplay();
+      // Inject the icon if applicable
+      if ($button.find('.state-icon').length == 0) {
+        $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>Â ');
+      }
+    }
+    init();
+  });
+});
+</script>
+<div class="alert alert-error" ng-show="errorMessage">
+  {{errorMessage}}
+</div>
+<div ng-controller="WeeklyTimesheetCtrl" ng-if="timesheetUser">
+  <div class="row">
+    <div class="col-md-9">
+      <h2>
+        <a ng-href="#{{prevWeekPath}}">&lt;</a>
+        <span>
+          {{timesheet.startDate | date:'longDate'}} -
+          {{timesheet.endDate | date:'longDate'}}
+        </span>
+        <a ng-href="#{{nextWeekPath}}">&gt;</a>
+      </h2>
+      <div ng-show="!singleMode && myProfile.canViewTimesheets">
+      <span class="button-checkbox">
+          <button type="button" class="{{buttonname}}" id="unlockButton" ng-click = "unlock()" data-color="info">UnLock</button>
+          <input type="checkbox" name="unlock" id="unlock" checked="unchecked" class="hidden">
+        </span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div ng-show="!singleMode && myProfile.canViewTimesheets">
+        <label for="user">Select user</label>
+        <select class="form-control"
+          ng-model="timesheetUser"
+          ng-options="n.identifier as n.displayName for n in users"
+          ng-change="switchUser()">
+        </select>
+        <br>
+      </div>
+      <div>
+        <label for="to_date">Select a date</label>
+        <form ng-submit="goToDate()" class="input-group">
+          <input name="to_date" type="text" datepicker class="form-control datepicker"
+          ng-model="dateToGo">
+          <span class="input-group-btn">
+            <button class="btn btn-default btn-xs" type="submit">Go!</button>
+          </span>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"
+      <div class="table-responsive">
+      <form action="" class="form" novalidate>
+        <table class="table table-hover table-condensed">
+          <tr>
+            <th style="width:20em">Project</th>
+            <th></th>
+            <th ng-repeat="date in dates">
+              {{date | date:'EEE'}}
+              <br>
+              {{date | date:'MMM d'}}
+            </th>
+          </tr>
+          <tr ng-repeat="(entryIndex, entry) in timesheet.entries">
+            <td>
+              <select class="form-control"
+                ng-model="entry.projectCode"
+                ng-disabled="cantEdit"
+                ng-options="p.code as p.description + ' ('+p.code+')' for p in projects"
+                ng-change="updateProjectCode(entry)">
+              </select>
+            </td>
+            <td>
+              <button type="button" class="btn btn-warning btn-xs"
+                ng-disabled="cantEdit"
+                ng-click="removeTimesheetEntry($index)">
+                <span>x</span>
+              </button>
+            </td>
+            <td ng-repeat="(dayEntryIndex, dayEntry) in entry.dayEntries">
+              <input daily-entry
+              name="entry[{{dayEntryIndex}}]"
+                class="form-control entry-{{dayEntryIndex}}-{{entryIndex}}"
+                ng-disabled="cantEdit"
+                ng-model="dayEntry.hours"
+                required
+                ng-class="validateBlur(dayEntry.hours)"
+                ng-change="saveDayEntry(entry, dayEntry)">
+            </td>
+          </tr>
+          <tr ng-show="!timesheet.entries.length">
+            <td colspan="999" style="text-align:center">
+              <br>
+              <p>
+              <button type="button" class="btn btn-warning btn-lg"
+                ng-disabled="cantEdit"
+                ng-click="copyLastTimesheet()">
+                Copy from last timesheet
+              </button>
+              </p>
+            </td>
+          </tr>
+        </table>
+        </form>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-7">
+          <button type="button" class="btn btn-primary btn-primary"
+            ng-disabled="cantEdit"
+            ng-click="addTimesheetEntry()">
+            Add Row
+          </button>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-default"
+            ng-disabled="cantEdit"
+            ng-click="newProject()">
+            Cannot find your project code? Generate one
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

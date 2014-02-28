@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>We're sorry, but something went wrong (500)</title>
+  <link type="text/css" rel="stylesheet" href="/css/960/960.css">
+  <link type="text/css" rel="stylesheet" href="/css/960/reset.css">
+  <link type="text/css" rel="stylesheet" href="/css/960/text.css">
+  <link type="text/css" rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+  <header>
+    <h2 class="title">xitrum-placeholder</h2>
+    <p class="subtitle">
+      <a href="http://ngocdaothanh.github.io/xitrum/">xitrum</a>
+      implementation for
+      <a href="http://placehold.it/">placehold.it</a>
+    </p>
+  </header>
+  <!-- This file lives in public/500.html -->
+  <div>
+    <h2 class="warning">We're sorry, but something went wrong.</h2>
+  </div>
+
+  <div id="content">
+    <h2>Usage</h2>
+    <p>Use as placeholder inside img tag like below</p>
+    <pre>        &lt; img src='http://xitrum-placeholder.herokuapp.com/100' &gt;
+    </pre>
+    <h2>API</h2>
+    <ul>
+      <li>
+        <code>/:size</code>
+        <p>
+          <span>return the square image of the specified size.</span>
+          <br>
+          <span>e.g.:</span>
+          <a href="/100" trget="_blank">/100</a>
+        </p>
+      </li>
+      <li>
+        <code>/:width/:height</code>
+        <p>
+          <span>return the rectangle image of the specified width * height.</span>
+          <br>
+          <span>e.g.:</span>
+          <a href="/100/200" trget="_blank">/100/200</a>
+        </p>
+      </li>
+      <li>
+        <code>/circle/:radius</code>
+        <p>
+          <span>return the image circle of the specified radius.</span>
+          <br>
+          <span>e.g.:</span>
+          <a href="/circle/100" trget="_blank">/circle/100</a>
+        </p>
+      </li>
+      <li>
+        <code>Option query</code>
+        <p>
+          <span>customize image with query parameter.</span>
+          <br>
+          <span>e.g.:</span>
+          <a href="/100/100?color=red&amp;text=hello&amp;textcolor=white" trget="_blank">/100/100?color=red&amp;text=hello&amp;textcolor=ffffff</a>
+        </p>
+        <span>Available options</span>
+        <ul>
+          <li>
+            <span>color (rrggbb or ColorName) : see also =&gt;</span>
+            <a href="http://www.docjar.com/docs/api/java/awt/Color.html" trget="_blank">Color</a>
+          </li>
+          <li>text (String)</li>
+          <li>textcolor (rrggbb or ColorName)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

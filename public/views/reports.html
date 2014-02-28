@@ -1,0 +1,72 @@
+<div ng-controller="ReportsCtrl" ng-if="timesheetUser">
+    <h1>Reports</h1>
+  
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <select ng-model="selectoption" class="btn btn-mini">
+          <option value="CurrentMonth">CurrentMonth</option>
+          <option value="LastMonth">LastMonth</option>
+          <option value="LifeCyle">LifeCyle</option>
+          <option value="CustomDate">CustomDate</option>
+        </select>
+        <input type="text" class="datepicker" datepicker ng-model="startdate">
+        <input type="text" class="datepicker" datepicker ng-model="enddate">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-target="#tab1" data-toggle="tab">Project Reports</a></li>
+            <li><a data-target="#tab2" class="disabled" data-toggle="tab">User Reports</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                <ul name='entity_code' class="option-box" ng-repeat="group in reportsGroup" style="width:{{100/reportsGroup.length}}%">
+                    <li ng-repeat="item in group">
+                        <input type="checkbox" name='{{item.code}}' id='{{item.code}}' ng-click="select(item)" >
+                        <label for="{{item.code}}">{{item.code}}</label>
+                    </li>
+                </ul><br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+  
+                    <tbody>
+                        <tr ng-repeat="item in reports" data-id="{{item.code}}">
+                            <td><a ng-click="showUserReports(item)">{{item.description}}</a></td>
+                            <td><a ng-click="showUserReports(item)">{{item.code}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="tab2">
+                <h1>{{selected.client_code}}</h1>
+                <h3>{{selected.description}}</h3>
+                <h3>{{selected.code}}</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Billable</th>
+                        </tr>
+                    </thead>
+  
+                    <tbody>
+                        <tr ng-repeat="user in userReports">
+                            <td>{{user._1}}</td>
+                            <td>{{user._2}}</td>
+                            <td><a href="#editProject">Report</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  
+  
+    <br>
+    <button class="btn btn-default"><a href="#createProject" style="text-decoration: none">Report</a></button>
+  
+  
+  
+  
+</div>

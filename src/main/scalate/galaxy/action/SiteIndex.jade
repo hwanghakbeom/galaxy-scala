@@ -1,0 +1,93 @@
+- import galaxy.action._
+
+!!! 5
+html
+  head
+    != antiCsrfMeta
+    != xitrumCss
+
+    meta(charset="utf-8")
+    title xitrum-placeholder
+
+    link(type="text/css" rel="stylesheet" href={publicUrl("css/960/960.css")})
+    link(type="text/css" rel="stylesheet" href={publicUrl("css/960/reset.css")})
+    link(type="text/css" rel="stylesheet" href={publicUrl("css/960/text.css")})
+    link(type="text/css" rel="stylesheet" href={publicUrl("css/app.css")})
+
+  body
+
+    header
+      h2.title xitrum-placeholder
+      p.subtitle
+        a(href='http://ngocdaothanh.github.io/xitrum/') xitrum
+        | implementation for
+        a(href='http://placehold.it/') placehold.it
+
+    hr
+
+    #content
+      h2 Usage
+      p Use as placeholder inside img tag like below
+      pre
+        \&lt; img src='http://xitrum-placeholder.herokuapp.com/100' &gt;
+      h2 API
+      ul
+        li
+          code /:size
+          p
+            span return the square image of the specified size.
+            br
+            span e.g.:
+            a(href="/100" trget="_blank") /100
+            br
+            br
+            img(src='/100')
+
+        li
+          code /:width/:height
+          p
+            span return the rectangle image of the specified width * height.
+            br
+            span e.g.:
+            a(href="/200/100" trget="_blank") /200/100
+            br
+            br
+            img(src='/200/100')
+        li
+          code /circle/:radius
+          p
+            span return the image circle of the specified radius.
+            br
+            span e.g.:
+            a(href="/circle/100" trget="_blank") /circle/100
+            br
+            br
+            img(src='/circle/100')
+        li
+          code Option query
+          p
+            span customize image with query parameter.
+            br
+            span e.g.:
+            a(href="/150/100?color=black&text=xitrum&textcolor=00FF00" trget="_blank") /150/100?color=black&text=xitrum&textcolor=00FF00
+            br
+            br
+            img(src='/150/100?color=black&text=xitrum&textcolor=00FF00')
+          span Available options
+          ul
+            li
+              span color (rrggbb or ColorName) : see also =>
+              a(href='http://www.docjar.com/docs/api/java/awt/Color.html' trget="_blank") Color
+            li text (String)
+            li textcolor (rrggbb or ColorName)
+
+
+    footer.footer
+      p
+        span &copy; 2013-
+        a(href="http://about.me/takeharu.oshida" trget="_blank") Takeharu.Oshida
+      p
+        span Source code can be found on
+        a(href="https://github.com/georgeOsdDev" target="_blank") github
+        span , licenced under
+        a(href="http://opensource.org/licenses/mit-license.php" target="_blank") MIT

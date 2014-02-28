@@ -1,0 +1,94 @@
+- import galaxy.action._
+  
+!!! 5
+html
+  head
+    != antiCsrfMeta
+    != xitrumCss
+  
+    meta(content="text/html; charset=utf-8" http-equiv="content-type")
+    <title>은하수 전통돌상에 오신것을 환영합니다 </title><!DOCTYPE html> 
+  
+    link(type="image/vnd.microsoft.icon" rel="shortcut icon" href={publicUrl("favicon.ico")})
+  
+    link(type="text/css" rel="stylesheet" media="all" href={publicUrl("css/bootstrap-theme.css")})
+    link(type="text/css" rel="stylesheet" media="all" href={publicUrl("css/bootstrap-theme.min.css")})
+    link(type="text/css" rel="stylesheet" media="all" href={publicUrl("css/bootstrap.css")})
+    link(type="text/css" rel="stylesheet" media="all" href={publicUrl("css/bootstrap.min.css")})
+    link(type="text/css" rel="stylesheet" media="all" href={publicUrl("css/application.css")})
+    link(type="text/css" rel="stylesheet" media="all" href={publicUrl("css/bootstrap-formhelpers.css")})
+    link(type="text/css" rel="stylesheet" media="all" href={publicUrl("css/bootstrap-formhelpers.min.css")})
+    link(type="text/css" rel="stylesheet" media="all" href={publicUrl("//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css")}) 
+    |<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  body
+    |<div>
+    |<div class="container">
+    |<div align="right">
+    |<p>
+    |<button class="btn btn-info" type="button">로그인</button>
+    |</p>
+    |</div>
+    |<div class="masthead">
+    |        <center><h3 class="muted"><a href="\" style="text-decoration:none">은하수 돌상</a></h3></center>
+    |        <div class="collapse navbar-collapse">
+    |              <ul class="nav navbar-nav">
+    |                <li class="active"><a href="\">Home</a></li>
+    |                <li><a href="\product">상품소개</a></li>
+    |                <li><a href="\portfolio">포트폴리오</a></li>
+    |                <li><a href="#">후기</a></li>
+    |                <li><a href="\contact">예약 및 상담</a></li>
+    |              </ul>
+    |        </div><!-- /.navbar -->
+    |      </div>
+    .container
+      .row
+        .col-md-12
+          #flash
+            !~ jsRenderFlash()
+            != renderedView
+    != jsDefaults
+    != jsForView
+  
+    |      <hr>
+    |<div class = "row-fluid" id="abouteva">
+    |    <div class ="span12">
+    |    <center>
+    |      <h4>은하수 돌상에 오신것을 환영합니다.</h4>
+    |      <h4>예약문의 : 010-2992-8086</h4>
+    |      </center>
+    |    </div>
+    |</div>
+    |      <hr>
+    |<div class = "row-fluid" id="blog">
+    | <div class="span6">
+    |  <center><a href="http://cafe.naver.com/ehsdolsang">
+    <img src="images/webimages/bi_naver.gif"> 
+    <img src="images/webimages/h_cafe.gif">
+    |</a></center>
+    |  </div>
+    |   <div class="span6">
+    |  <center><a href="http://blog.naver.com/PostThumbnailList.nhn?blogId=pkh_1004&parentCategoryNo=125"><img src="images/webimages/bi_naver.gif">블로그 </a></center>
+    |  </div>
+    |</div>
+    |</div>
+    |</div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+  
+    |<script type="text/javascript" src="/js/components/angular/angular.js"></script>
+    |<script type="text/javascript" src="/js/components/angular-route/angular-route.js"></script>
+    |<script type="text/javascript" src="/js/components/angular-resource/angular-resource.js"></script>
+    |<script type="text/javascript" src="/js/controllers.js"></script>
+    |<script type="text/javascript" src="/js/controllers/reports.js"></script>
+    |<script type="text/javascript" src="/js/factories.js"></script>
+    |<script type="text/javascript" src="/js/filters.js"></script>
+    |<script type="text/javascript" src="/js/numeric_input.js"></script>
+    |<script type="text/javascript" src="/js/moment.js"></script>
+    |<script type="text/javascript" src="/js/services.js"></script>
+    |<script type="text/javascript" src="/js/directives.js"></script>
+    |<script type="text/javascript" src="/js/vendor/bootstrap.min.js"></script>
+    |<script type="text/javascript" src="/js/vendor/bootstrap-dropdown.js"></script>
+    |<script type="text/javascript" src="/js/app.js"></script>
+    |<script type="text/javascript" src="/js/default.js"></script>
